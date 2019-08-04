@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{pageTitle}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="expForm" (ngSubmit)="onSubmit(expForm)" padding>
+        <div style="width:100%; height:150px ">
+            <ion-img  src="{{imageurl}}/{{image}}" [ngStyle]="{'width':'100%','height':'150px'}"></ion-img>
+        </div>
+
+       <ion-item>
+          <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)" formControlName="image" >
+       </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Title</ion-label>
+    <ion-input type="text"  formControlName="title"></ion-input>
+  </ion-item>
+        <ion-item>
+            <ion-label  position="stacked">Date</ion-label>
+            <!-- <ion-input type="date" formControlName="date" required></ion-input> -->
+            <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
+        </ion-item>
+
+          <ion-item>
+              <ion-label position="stacked">Type</ion-label>
+              <div class="row"style="width:100%; margin-top: 10px;">
+                <div class="col-xs-15"> 
+                  <select class="form-control form-control-lg"  name='type' placeholder="Select expense_type" formControlName="type">  
+                      <option value=""> -- Please Select -- </option>
+                           <option value="Material Expenses">Material Expenses</option>
+                           <option value="Food and Beverage Expenses">Food and Beverage Expenses</option>
+                           <option value="Administraion Expenses">Administration Expenses</option>
+                           <option value="Electricity Expenses">Electricity Expenses</option>
+                           <option value="Advertising Expenses">Advertising Expenses</option>
+                  </select>
+                </div>  
+            </div>
+          </ion-item> 
+
+  <ion-item>
+      <ion-label position="floating">Details</ion-label>
+      <ion-input type="text"  formControlName="details"></ion-input>
+  </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Amount</ion-label>
+        <ion-input type="number" formControlName="amount"></ion-input>
+    </ion-item>
+
+      <ion-item>
+          <ion-label position="stacked">PaymentMode</ion-label>
+          <div class="row"style="width:100%; margin-top: 10px;">
+            <div class="col-xs-15"> 
+              <select class="form-control form-control-lg"  (change)="onclick($event.target.value)" placeholder="Select PaymentMode"  formControlName="payment_mode" required >
+              <option value=""> -- Please Select -- </option> 
+                <option value="0">cash</option>
+                  <option value="1">cheque</option>
+                  <option value="2">partial payment</option>
+              </select>
+            </div>  
+        </div>
+        </ion-item>
+        
+            <ion-item *ngIf="showcheque" >                      
+                <ion-label position="floating">Cheque No</ion-label>       
+                <ion-input type="number"   formControlName="cheque"  required></ion-input> 
+            </ion-item>
+
+            <ion-item *ngIf="showpartial">
+                <ion-label position="floating">advance</ion-label>
+                <ion-input type="number"  formControlName="advance" required></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="showpartial">
+                <ion-label position="floating">Cheque Amount</ion-label>
+                <ion-input  type="number"  formControlName="chequeAmount" required ></ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="showpartial" >
+                <ion-label position="floating">Cheque No</ion-label>
+                <ion-input type="number"  formControlName="cheque" required></ion-input> 
+            </ion-item> 
+         
+      <div class="container" [ngStyle]="{'margin-top':'10px'}">
+              <ion-button color="primary" size="default" type="submit" > Submit </ion-button> 
+              <ion-button color="primary"  class="cancelbtn" size="default" type="button" ng-click="cancel()" (click)="onCancel()" > Cancel </ion-button>
+            </div>
+
+     </form>
+    </ion-content>

@@ -1,0 +1,45 @@
+$white-color: #fff;
+
+ion-grid {
+    width: 100%;
+    height: 100%;
+    background: #dfdfdf;
+}
+
+.pd {
+    margin-top: 4em;
+}
+
+ion-row {
+    height: 100%;
+}
+
+ion-col {
+    border: 1px solid #488aff;
+    background: $white-color;
+}
+
+ion-button {
+    font-weight: 300;
+}
+
+.mg-button {
+    margin-top: 2em;
+    letter-spacing: 0.3175px;
+    word-spacing: 0;
+}
+
+#forgotpass-btn {
+    font-weight: bold;
+    letter-spacing: 0.3175px;
+    word-spacing: 0;
+}
+
+@media (min-width: 240px) and (max-width: 768px) {
+    ion-grid {
+        background: $white-color;
+    }
+    ion-col {
+        border: none;
+    }
+}

@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        View Product
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-card>
+        <!-- <ion-button fill="outline" slot="end" [routerLink]="['/addeditproduct',viewproduct.id]" routerLinkActive="router-link-active" >Edit</ion-button> -->
+        <ion-img [ngStyle]="{'width': '100%', 'height': '150px'}" src="{{imageurl}}/{{viewproduct.image}}"></ion-img>
+        <ion-card-content>
+          <ion-list>
+              <ion-button  fill="none" [routerLink]="['/addeditproduct',viewproduct.id]" routerLinkActive="router-link-active" ><ion-icon class="editicon" [src]="'assets/icon/baseline-edit-24px.svg'"></ion-icon></ion-button>
+            <ion-item>
+              <ion-label> ID:</ion-label><p>{{viewproduct.id}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label> Name:</ion-label><p>{{viewproduct.name}}</p>
+            </ion-item>
+            <ion-item> 
+              <ion-label>Code: </ion-label><p>{{viewproduct.code}}</p>
+            </ion-item>   
+              <ion-item>   
+              <ion-label>Quantity: </ion-label> <p>{{viewproduct.quantity}}</p>
+            </ion-item>  
+              <ion-item>
+              <ion-label>Price:</ion-label> <p>{{viewproduct.price}}</p>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+      <!-- {{viewproduct | json}}; -->
+  </ion-content>
+  

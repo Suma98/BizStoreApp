@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        View Expense
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-card>
+        <ion-img [ngStyle]="{'width': '100%', 'height': '150px'}" src="{{imageurl}}/{{particularexpense.image}}"></ion-img>
+        <ion-card-content>
+          <ion-list>
+              <ion-button  fill="none" [routerLink]="['/addeditexpense',particularexpense.id]" routerLinkActive="router-link-active" ><ion-icon class="editicon" [src]="'assets/icon/baseline-edit-24px.svg'"></ion-icon></ion-button>
+            <ion-item>
+              <ion-label>id:</ion-label><p>{{particularexpense.id}}</p>
+            </ion-item>
+            <ion-item>
+              <ion-label>title:</ion-label><p>{{particularexpense.title}}</p>
+            </ion-item>
+            <ion-item> 
+              <ion-label>date:</ion-label><p>{{particularexpense.date | date}}</p>
+            </ion-item>   
+              <ion-item> 
+                <ion-grid>
+                  <ion-row>
+                    <ion-col width-50><ion-label>type:</ion-label></ion-col>
+                    <ion-col width-50><p>{{particularexpense.type}}</p></ion-col>
+                  </ion-row>
+
+                </ion-grid>  
+              
+            </ion-item>  
+              <ion-item>
+              <ion-label>amount:</ion-label><p>{{particularexpense.amount}}</p>
+            </ion-item>
+            <ion-item>
+                <ion-label>payment_mode:</ion-label><p>{{particularexpense.payment_mode}}</p> 
+              </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+  </ion-content>
+  

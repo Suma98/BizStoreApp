@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        {{pageTitle}}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit(productForm)" padding>
+        <div style="width:100%; height:150px ">
+          <ion-img  src="{{imageurl}}/{{image}}" [ngStyle]="{'width':'100%','height':'150px'}"></ion-img>
+        </div>
+         <ion-item>
+             <input #imageInput
+             type="file"
+             accept="image/*"
+             (change)="processFile(imageInput)" formControlName="image" >
+           </ion-item>
+        
+          <ion-item>
+              <ion-label position="floating">Product Name</ion-label>
+              <ion-input type="text" formControlName="name" required></ion-input>
+            </ion-item>
+          <ion-item>
+            <ion-label position="floating">Product Code</ion-label>
+            <ion-input type="text" formControlName="code" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Product quantity</ion-label>
+            <ion-input type="number" formControlName="quantity" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Product Price</ion-label>
+            <ion-input type="number" formControlName="price" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Product Description</ion-label>
+            <ion-textarea formControlName="description"></ion-textarea>
+          </ion-item>
+          <ion-item>
+              <ion-label position="floating">Add Subproducts</ion-label>
+              <!-- <ion-fab-button  class="addbutton" [routerLink]="['/addeditsubproduct']" routerLinkActive="router-link-active" > -->
+                <ion-button fill="none" (click)="addsubprod()" ><ion-icon class="addicon" color="primary" [src]="'assets/icon/baseline-add_box-24px.svg'"></ion-icon></ion-button>
+                <!-- <ion-icon name="add"></ion-icon> -->
+              <!-- </ion-fab-button> -->
+          </ion-item>
+          <!-- <ion-item>
+              <ion-label>Is Active</ion-label>
+              <ion-checkbox formControlName="isActive" color="primary"></ion-checkbox>
+          </ion-item> -->
+          <div class="container" [ngStyle]="{'margin-top':'10px'}">
+            <ion-button color="primary" size="default" type="submit" > Submit </ion-button> 
+            <!-- (click)="onsave()" -->
+            <ion-button color="primary"  class="cancelbtn" size="default" type="button" ng-click="cancel()" (click)="onCancel()" > Cancel </ion-button>
+          </div>
+        </form>
+  </ion-content>

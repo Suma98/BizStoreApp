@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Products
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor = "let pr of products | orderBy : reverse" >
+    <div class="row" > 
+      <div class="col-xs-3" >
+          <!-- http://localhost:8081/pRESTige-master/api/ -->
+        <ion-img class="productimage" src="{{imageurl}}/{{pr.image}}" (click)="viewImage('http://itatonce.in:80/test/bizstore/api/'+pr.image)"  [ngStyle]="{'width': '60px', 'height': '60px' , 'margin-top':'12px '}"   ></ion-img>
+      </div> 
+      <div class="col-xs-9 ">
+        <div class="productlist">
+          <table [ngStyle]="{'width':'100%','border':'1'}" > 
+            <div fill="outline" slot="end" [routerLink]="['/viewproduct',pr.id]" routerLinkActive="router-link-active" [ngStyle]="{'width':'100%'}"> 
+              <!-- <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>ID: </b>{{pr.id}}</ion-label></tr> -->
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>Name:</b> {{pr.name}}</ion-label></tr>
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>Code:</b> {{pr.code}}</ion-label></tr>
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>Quantity:</b> {{pr.quantity}}</ion-label></tr>
+            </div>       
+            <tr>
+              <td [ngStyle]="{'width':'85%'}"><ion-label><b>Price:</b>{{pr.price}}</ion-label></td>
+              <td ><ion-icon (click)="deletealert(pr)" class="deleteicon" [src]="'assets/icon/baseline-delete-24px.svg'" ></ion-icon></td>
+            </tr>
+          </table> 
+        </div>  
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [ngStyle]="{'color':'#ff7777'}" [routerLink]="['/addeditproduct']" routerLinkActive="router-link-active" >
+      <ion-icon  name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

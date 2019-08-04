@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar> 
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>expense</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <ion-searchbar [(ngModel)]="term" placeholder="Search.."> </ion-searchbar>
+    </div>
+ <ion-card *ngFor = "let exp of expense | orderBy : reverse | filter:term let i=index; "  >
+    <div class="row" > 
+      <div class="col-xs-3" >
+        <ion-img class="expenseimage" src="{{imageurl}}/{{exp.image}}"(click)="viewImage('http://itatonce.in:80/test/bizstore/api/'+exp.image)"  [ngStyle]="{'width': '60px', 'height': '60px' , 'margin-top':'12px '}"></ion-img>
+      </div> 
+      <div class="col-xs-9 ">
+        <div class="expenselist">
+            <table [ngStyle]="{'width':'100%','border':'1'}"> 
+            <div fill="outline" slot="end" [routerLink]="['/particularexpense',exp.id]" routerLinkActive="router-link-active" [ngStyle]="{'width':'100%'}"> 
+
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>title: </b>{{exp.title}}</ion-label></tr>
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>date: </b>{{exp.date | date}}</ion-label></tr>
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>type:</b>{{exp.type}}</ion-label></tr>
+              <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label><b>amount:</b>{{exp.amount}}</ion-label></tr>
+ <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label *ngIf="exp.payment_mode == '0' || exp.payment_mode == '1'"><b>payment_mode:</b>{{exp.payment_mode == '0' ? 'Cash' : 'Cheque'}}</ion-label></tr>
+ <tr  colspan="2" [ngStyle]="{'width':'100%'}"><ion-label *ngIf="exp.payment_mode == '2'"><b>payment_mode:</b>{{exp.payment_mode == '2' ? 'Partial payment' : 'null'}}</ion-label> </tr>
+</div>
+            <tr>
+                <td><ion-icon (click)="deletealert(exp)" class="deleteicon" [src]="'assets/icon/baseline-delete-24px.svg'" ></ion-icon></td>               
+            </tr>
+          </table> 
+        </div>  
+      </div>
+    </div>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" color="light" [routerLink]="['/addeditexpense']" routerLinkActive="router-link-active"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> 
+</ion-content>
